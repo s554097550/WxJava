@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.InputStream;
 
 import me.chanjar.weixin.common.bean.result.WxMediaUploadResult;
+import me.chanjar.weixin.common.bean.result.WxMediaVideoInfoResult;
 import me.chanjar.weixin.common.error.WxErrorException;
 import me.chanjar.weixin.mp.bean.material.WxMediaImgUploadResult;
 import me.chanjar.weixin.mp.bean.material.WxMpMaterial;
@@ -72,6 +73,7 @@ public interface WxMpMaterialService {
    */
   WxMediaUploadResult mediaUpload(String mediaType, String fileType, InputStream inputStream) throws WxErrorException;
 
+
   /**
    * <pre>
    * 获取临时素材
@@ -87,6 +89,20 @@ public interface WxMpMaterialService {
    * @throws WxErrorException
    */
   File mediaDownload(String mediaId) throws WxErrorException;
+
+  /**
+   * <pre>
+   * 获取临时视频素材
+   * 公众号可以使用本接口获取视频临时素材下载地址。
+   * 本接口即为原“下载多媒体文件”接口。
+   * 详情请见: <a href="http://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1444738727&token=&lang=zh_CN">获取临时素材</a>
+   * 接口url格式：https://api.weixin.qq.com/cgi-bin/media/get?access_token=ACCESS_TOKEN&media_id=MEDIA_ID
+   * </pre>
+   *
+   * @param mediaId 媒体文件Id
+   * @throws WxErrorException
+   */
+  WxMediaVideoInfoResult mediaVideoInfo(String mediaId) throws WxErrorException;
 
   /**
    * <pre>

@@ -4,11 +4,13 @@ import lombok.RequiredArgsConstructor;
 import me.chanjar.weixin.common.WxType;
 import me.chanjar.weixin.common.api.WxConsts;
 import me.chanjar.weixin.common.bean.result.WxMediaUploadResult;
+import me.chanjar.weixin.common.bean.result.WxMediaVideoInfoResult;
 import me.chanjar.weixin.common.error.WxError;
 import me.chanjar.weixin.common.error.WxErrorException;
 import me.chanjar.weixin.common.util.fs.FileUtils;
 import me.chanjar.weixin.common.util.http.BaseMediaDownloadRequestExecutor;
 import me.chanjar.weixin.common.util.http.MediaUploadRequestExecutor;
+import me.chanjar.weixin.common.util.http.MediaVideoInfoRequestExecutor;
 import me.chanjar.weixin.common.util.json.WxGsonBuilder;
 import me.chanjar.weixin.mp.api.WxMpMaterialService;
 import me.chanjar.weixin.mp.api.WxMpService;
@@ -63,6 +65,11 @@ public class WxMpMaterialServiceImpl implements WxMpMaterialService {
       BaseMediaDownloadRequestExecutor.create(this.wxMpService.getRequestHttp(), this.wxMpService.getWxMpConfigStorage().getTmpDirFile()),
       MEDIA_GET_URL,
       "media_id=" + mediaId);
+  }
+
+  @Override
+  public WxMediaVideoInfoResult mediaVideoInfo(String mediaId) throws WxErrorException {
+    return this.wxMpService.execute(MediaVideoInfoRequestExecutor.create(this.wxMpService.getRequestHttp()), MEDIA_GET_URL, mediaId);
   }
 
   @Override
